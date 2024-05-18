@@ -8,7 +8,9 @@ const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerH
 const renderer = new THREE.WebGLRenderer({
   canvas: document.querySelector("#bg"),
 });
+const background = new THREE.TextureLoader().load("space.jpg");
 
+scene.background = background;
 renderer.setPixelRatio(window.devicePixelRatio);
 renderer.setSize(window.innerWidth, window.innerHeight);
 
@@ -20,11 +22,11 @@ const geometry = new THREE.TorusGeometry(10, 3, 16, 100);
 const material = new THREE.MeshStandardMaterial({ color: 0xFF6200 });
 const torus = new THREE.Mesh(geometry, material);
 
+
 scene.add(torus);
 
 const ambientLight = new THREE.AmbientLight(0xffffff);
 const pointLight = new THREE.PointLight(0xffffff);
-pointLight.intensity = 150;
 pointLight.position.set(7, 5, 10);
 
 scene.add(ambientLight, pointLight);
@@ -48,9 +50,17 @@ function animate() {
   torus.rotation.y += 0.01;
   torus.rotation.z += 0.01;
 
-  controls.update();
-
   renderer.render(scene, camera);
 }
 
 animate();
+
+function move() {
+  let t = document.body.getBoundingClientRect().top;
+
+  camera.position.y = t * 0.02;
+  renderer.render(scene, camera); 
+}
+
+document.onscroll = move;
+move();
