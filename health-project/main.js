@@ -70,3 +70,16 @@ function move() {
 
 document.onscroll = move;
 move();
+
+const noTobbaco = new THREE.TextureLoader().load("no-tobbaco.jpg");
+let noTobbacoBox = new THREE.Mesh(
+  new THREE.BoxGeometry(1, 1, 1),
+  new THREE.MeshBasicMaterial({map: noTobbaco})
+);
+
+function animate() {
+  requestAnimationFrame(animate);
+  renderer.render(scene, camera);
+}
+
+animate();
