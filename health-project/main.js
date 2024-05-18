@@ -1,3 +1,4 @@
+import { normalMap } from 'three/examples/jsm/nodes/Nodes.js';
 import './style.css'
 
 import * as THREE from 'three';
@@ -22,24 +23,24 @@ const geometry = new THREE.TorusGeometry(10, 3, 16, 100);
 const material = new THREE.MeshStandardMaterial({ color: 0xFF6200 });
 const torus = new THREE.Mesh(geometry, material);
 
+torus.position.setX(25);
+torus.position.setY(3);
 
 scene.add(torus);
 
 const ambientLight = new THREE.AmbientLight(0xffffff);
-const pointLight = new THREE.PointLight(0xffffff);
-pointLight.position.set(7, 5, 10);
 
-scene.add(ambientLight, pointLight);
-
-const lightHelper = new THREE.PointLightHelper(pointLight);
-
-scene.add(lightHelper);
+scene.add(ambientLight);
 
 const noSmokingTexture = new THREE.TextureLoader().load("no-smoking.webp");
 const noSmoking = new THREE.Mesh(
   new THREE.BoxGeometry(3, 3, 3),
   new THREE.MeshBasicMaterial({map: noSmokingTexture}),
 );
+
+noSmoking.position.setX(25);
+noSmoking.position.setY(3);
+
 
 scene.add(noSmoking);
 
@@ -58,7 +59,12 @@ animate();
 function move() {
   let t = document.body.getBoundingClientRect().top;
 
-  camera.position.y = t * 0.02;
+  camera.position.y = t * 0.11;
+
+  noSmoking.rotation.x += 0.01;
+  noSmoking.rotation.y += 0.05;
+  noSmoking.rotation.z += 0.01;
+
   renderer.render(scene, camera); 
 }
 
