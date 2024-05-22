@@ -70,6 +70,18 @@ noSmoking.position.setY(3);
 
 scene.add(noSmoking);
 
+const throwCigaretteInTrashTexture = new THREE.TextureLoader().load("/throw-cigarrette-in-trash.jpg");
+const throwCigaretteInTrash = new THREE.Mesh(
+  new THREE.BoxGeometry(3, 3, 3),
+  new THREE.MeshBasicMaterial({map: throwCigaretteInTrashTexture}),
+);
+
+throwCigaretteInTrash.position.setY(1);
+throwCigaretteInTrash.position.setX(-262);
+throwCigaretteInTrash.scale.set(3, 3, 3);
+
+scene.add(throwCigaretteInTrash);
+
 // const controls = new OrbitControls( camera, renderer.domElement );
 
 function animate() {
@@ -98,6 +110,9 @@ function move() {
 
   smokingEffects.rotation.x += 0.01;
   smokingEffects.rotation.z += 0.01;
+
+  throwCigaretteInTrash.rotation.y += 0.05;
+  throwCigaretteInTrash.rotation.x += 0.05;
 
   renderer.render(scene, camera); 
   // controls.update();
