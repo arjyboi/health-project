@@ -94,6 +94,18 @@ breakCigarette.scale.set(3, 3, 3);
 
 scene.add(breakCigarette);
 
+const guySmokingTexture = new THREE.TextureLoader().load("/guySmoking.png");
+const guySmoking = new THREE.Mesh(
+  new THREE.BoxGeometry(3, 3, 3),
+  new THREE.MeshBasicMaterial({map: guySmokingTexture}),
+);
+
+guySmoking.position.setY(1);
+guySmoking.position.setX(-449);
+guySmoking.scale.set(2, 2, 2);
+
+scene.add(guySmoking);
+
 // const controls = new OrbitControls( camera, renderer.domElement );
 
 function animate() {
@@ -108,6 +120,10 @@ function animate() {
   smokingEffects.rotation.y += 0.005;
 
   breakCigarette.rotation.x += 0.01;
+
+  guySmoking.rotation.x += 0.001;
+  guySmoking.rotation.y += 0.01;
+  guySmoking.rotation.z += 0.001;
 
   renderer.render(scene, camera);
 }
