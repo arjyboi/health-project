@@ -118,6 +118,18 @@ smiling.scale.set(3, 3, 3);
 
 scene.add(smiling);
 
+const babyReadingTexture = new THREE.TextureLoader().load("/baby-reading.gif");
+const babyReading = new THREE.Mesh(
+  new THREE.BoxGeometry(3, 3, 3),
+  new THREE.MeshBasicMaterial({map: babyReadingTexture}),
+);
+
+babyReading.position.setY(-8);
+babyReading.position.setX(-596);
+babyReading.scale.set(5, 5, 5);
+
+scene.add(babyReading);
+
 // const controls = new OrbitControls( camera, renderer.domElement );
 
 function animate() {
@@ -138,6 +150,7 @@ function animate() {
   guySmoking.rotation.z += 0.001;
 
   smiling.rotation.y += 0.01;
+  babyReading.rotation.y += 0.01;
 
   renderer.render(scene, camera);
 }
