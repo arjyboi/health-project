@@ -106,6 +106,18 @@ guySmoking.scale.set(2, 2, 2);
 
 scene.add(guySmoking);
 
+const smilingTexture = new THREE.TextureLoader().load("/smiling.jpg");
+const smiling = new THREE.Mesh(
+  new THREE.BoxGeometry(3, 3, 3),
+  new THREE.MeshBasicMaterial({map: smilingTexture}),
+);
+
+smiling.position.setY(1);
+smiling.position.setX(-509);
+smiling.scale.set(3, 3, 3);
+
+scene.add(smiling);
+
 // const controls = new OrbitControls( camera, renderer.domElement );
 
 function animate() {
@@ -124,6 +136,8 @@ function animate() {
   guySmoking.rotation.x += 0.001;
   guySmoking.rotation.y += 0.01;
   guySmoking.rotation.z += 0.001;
+
+  smiling.rotation.y += 0.01;
 
   renderer.render(scene, camera);
 }
