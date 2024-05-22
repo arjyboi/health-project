@@ -82,6 +82,18 @@ throwCigaretteInTrash.scale.set(3, 3, 3);
 
 scene.add(throwCigaretteInTrash);
 
+const breakCigaretteTexture = new THREE.TextureLoader().load("/break-cigarette.jpg");
+const breakCigarette = new THREE.Mesh(
+  new THREE.BoxGeometry(3, 3, 3),
+  new THREE.MeshBasicMaterial({map: breakCigaretteTexture}),
+);
+
+breakCigarette.position.setY(1);
+breakCigarette.position.setX(-309);
+breakCigarette.scale.set(3, 3, 3);
+
+scene.add(breakCigarette);
+
 // const controls = new OrbitControls( camera, renderer.domElement );
 
 function animate() {
@@ -94,6 +106,8 @@ function animate() {
   question.rotation.y += 0.01;
 
   smokingEffects.rotation.y += 0.005;
+
+  breakCigarette.rotation.x += 0.01;
 
   renderer.render(scene, camera);
 }
